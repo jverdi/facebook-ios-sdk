@@ -31,7 +31,7 @@ static CGFloat kBorderWidth = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-BOOL FBIsDeviceIPad() {
+BOOL FBIsDeviceIPad(void) {
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         return YES;
@@ -287,7 +287,7 @@ params   = _params;
 // NSObject
 
 - (id)init {
-    if (self == [super initWithFrame:CGRectZero]) {
+    if (self = [super initWithFrame:CGRectZero]) {
         _delegate = nil;
         _loadingURL = nil;
         _orientation = UIDeviceOrientationUnknown;

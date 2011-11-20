@@ -25,6 +25,8 @@
  * Facebook dialog interface for start the facebook webView UIServer Dialog.
  */
 
+BOOL FBIsDeviceIPad(void);
+
 @interface FBDialog : UIView <UIWebViewDelegate> {
   id<FBDialogDelegate> _delegate;
   NSMutableDictionary *_params;
