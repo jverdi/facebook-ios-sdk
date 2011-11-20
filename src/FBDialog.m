@@ -31,7 +31,7 @@ static CGFloat kBorderWidth = 10;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-static BOOL FBIsDeviceIPad() {
+BOOL FBIsDeviceIPad(void) {
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 30200
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         return YES;
@@ -129,14 +129,14 @@ params   = _params;
     CGColorSpaceRelease(space);
 }
 
-- (BOOL)shouldRotateToOrientation:(UIInterfaceOrientation)orientation {
+- (BOOL)shouldRotateToOrientation:(UIDeviceOrientation)orientation {
     if (orientation == _orientation) {
         return NO;
     } else {
-        return orientation == UIInterfaceOrientationPortrait
-        || orientation == UIInterfaceOrientationPortraitUpsideDown
-        || orientation == UIInterfaceOrientationLandscapeLeft
-        || orientation == UIInterfaceOrientationLandscapeRight;
+        return orientation == UIDeviceOrientationLandscapeLeft
+        || orientation == UIDeviceOrientationLandscapeRight
+        || orientation == UIDeviceOrientationPortrait
+        || orientation == UIDeviceOrientationPortraitUpsideDown;
     }
 }
 
@@ -287,9 +287,10 @@ params   = _params;
 // NSObject
 
 - (id)init {
-    if ((self = [super initWithFrame:CGRectZero])) {
+    if (self = [super initWithFrame:CGRectZero]) {
         _delegate = nil;
         _loadingURL = nil;
+        _orientation = UIDeviceOrientationUnknown;
         _showingKeyboard = NO;
         
         self.backgroundColor = [UIColor clearColor];
