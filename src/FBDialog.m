@@ -290,7 +290,7 @@ params   = _params;
     if (self = [super initWithFrame:CGRectZero]) {
         _delegate = nil;
         _loadingURL = nil;
-        _orientation = UIDeviceOrientationUnknown;
+        _orientation = (UIInterfaceOrientation)UIDeviceOrientationUnknown;
         _showingKeyboard = NO;
         
         self.backgroundColor = [UIColor clearColor];
@@ -421,7 +421,7 @@ params   = _params;
 
 - (void)deviceOrientationDidChange:(void*)object {
     UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
-    if (!_showingKeyboard && [self shouldRotateToOrientation:orientation]) {
+    if (!_showingKeyboard && [self shouldRotateToOrientation:(UIDeviceOrientation)orientation]) {
         [self updateWebOrientation];
         
         CGFloat duration = [UIApplication sharedApplication].statusBarOrientationAnimationDuration;
